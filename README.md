@@ -18,5 +18,4 @@ Below is a simple case for discrete integer data
 
 ### how to bin properly? k-mean clustering?
 
-$MI(U,V)=\sum_{i=1}^{|U|} \sum_{j=1}^{|V|} \\frac{|U_i\cap V_j|}{N}
-        \log\\frac{N|U_i \cap V_j|}{|U_i||V_j|}$
+![](./latex-image-1.png)
