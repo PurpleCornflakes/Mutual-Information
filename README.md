@@ -30,7 +30,7 @@ scikit-learn has 3 methods to calculate mutual entropy.
 ## Conclusion
 
 Below is AMI and NMI for 200*200 Ising lattice.
-![](./ising_every_10_row.png)
+![](./MyIsing_every_10_row.png)
 
 For simple cases(e.g your X,Y are integers), AMI is the most feasible one, but it uses np.unique() for labels.
 
