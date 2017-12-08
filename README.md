@@ -24,11 +24,13 @@ scikit-learn has 3 methods to calculate mutual entropy.
 
 1. Adjusted_MI: is an adjustment of the MI score to account *for chance*. It accounts for the fact that the MI is generally higher for two clusterings with a larger number of clusters, regardless of whether there is actually more information shared.
 2. Normalized_MI: I(X;Y)/sqrt(H(X)H(Y)) (I wrote the same one by myself.)
-3. MI
-Below is a simple case for discrete integer data
+3. MI: Below is a simple case for discrete integer data, the dashed line is MI by my own code.
 ![](./imgs/MI_sklearn.png)
 
 ## Conclusion
+
+Below is AMI and NMI for 200*200 Ising lattice.
+![](./ising_every_10_row.png)
 
 For simple cases(e.g your X,Y are integers), AMI is the most feasible one, but it uses np.unique() for labels.
 
