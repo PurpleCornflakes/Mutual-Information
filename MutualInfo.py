@@ -1,14 +1,20 @@
+# -------
+# This is to calculate Mutual information as a func of distance,
+# both in 1D slice of IsingModel and adptivenNN reinforcement factor
+
+
+# -------
+
 import numpy as np 
 import matplotlib.pyplot as plt 
 from matplotlib import pylab
-from sklearn.metrics.cluster import \
-	mutual_info_score, normalized_mutual_info_score, adjusted_mutual_info_score
+from sklearn.metrics.cluster import normalized_mutual_info_score, adjusted_mutual_info_score
 
-
-ising_slice = np.loadtxt("slice_Tc", delimiter = ",")
-adpNN_r = np.load("r1_64.npy")
-
-def plot_MI_distance(data, ax, marker, dmax = 25, method = 'NMI'):
+ising_slice = np.loadtxt("slice_Tc200_one_40", delimiter = ",")
+# adpNN_r = np.load("r1_64.npy")
+# print(ising_slice.shape)
+# exit()
+def plot_MI_distance(data, ax, marker, dmax = 100, method = 'NMI'):
 	if len(data.shape) == 1:
 		assert(len(data)%dmax == 0)
 		data = data.reshape(len(data)//dmax,dmax)
@@ -35,23 +41,25 @@ def plot_MI_distance(data, ax, marker, dmax = 25, method = 'NMI'):
 	return ax.plot(np.log10(range(1,dmax)), np.log10(MIs[1:dmax]),marker)[0]
 
 def plot_all():
-	plt.close('all')
 	axes = [0]
 	fig,axes[0] = plt.subplots(1)
 	fig.set_size_inches(10, 5)
-
-	ising_NMIs = plot_MI_distance(data=ising_slice[:,:25], ax=axes[0], marker='ro')
-	ising_AMIs = plot_MI_distance(data=ising_slice[:,:25], ax=axes[0], method='AMI', marker='r-')
-	ising_self_NMIs = plot_MI_distance(data=ising_slice[:,:25], ax=axes[0], method='self_NMI', marker='r--')
-	adpNN_NMIs = plot_MI_distance(data=adpNN_r, ax=axes[0], marker='bo')
-	adpNN_AMIs = plot_MI_distance(data=adpNN_r, ax=axes[0], method='AMI', marker='b-')
-	adpNN_self_NMIs = plot_MI_distance(data=adpNN_r, ax=axes[0], method='self_NMI', marker='b--')
+	ising_data = ising_slice[:,:200]
+	ising_NMIs = plot_MI_distance(data=ising_data, ax=axes[0], marker='ro')
+	ising_AMIs = plot_MI_distance(data=ising_data, ax=axes[0], method='AMI', marker='r-')
+	# ising_self_NMIs = plot_MI_distance(data=ising_data, ax=axes[0], method='self_NMI', marker='r--')
+	# adpNN_NMIs = plot_MI_distance(data=adpNN_r, ax=axes[0], marker='bo')
+	# adpNN_AMIs = plot_MI_distance(data=adpNN_r, ax=axes[0], method='AMI', marker='b-')
+	# adpNN_self_NMIs = plot_MI_distance(data=adpNN_r, ax=axes[0], method='self_NMI', marker='b--')
 
 	plt.xlabel('log(d(X,Y))')
 	plt.ylabel('log(I(X;Y))')
-	plt.legend((ising_NMIs, ising_AMIs, ising_self_NMIs, adpNN_NMIs, adpNN_AMIs, adpNN_self_NMIs),\
-		('Ising_NMI', 'Ising_AMI', 'Ising_self_NMI', 'AdpNN_r_NMI', 'AdpNN_r_AMI', 'AdpNN_self_NMI'))
-	# plt.savefig('MI_sklearn.png')
+	plt.legend((ising_NMIs, ising_AMIs),\
+	('Ising_NMI', 'Ising_AMI'))
+
+	# plt.legend((ising_NMIs, ising_AMIs, ising_self_NMIs, adpNN_NMIs, adpNN_AMIs, adpNN_self_NMIs),\
+	# 	('Ising_NMI', 'Ising_AMI', 'Ising_self_NMI', 'AdpNN_r_NMI', 'AdpNN_r_AMI', 'AdpNN_self_NMI'))
+	plt.savefig('IsingNMI200c_1_2.png')
 	plt.show() 
 
 def H(Px):
