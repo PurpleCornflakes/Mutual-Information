@@ -32,9 +32,8 @@ Below is a simple case for discrete integer data
 
 For simple cases(e.g your X,Y are integers), AMI is the most feasible one, but it uses np.unique() for labels.
 
-`np.unique([1.21,2,1.21,2,4])
-
-array([ 1.21,  2.  ,  4.  ])`
+`np.unique([1.21,2,1.21,2,4])`
+`array([ 1.21,  2.  ,  4.  ])`
 
 So, if your X,Y are inhomogeneous values, do *binning first* before AMI().
 
