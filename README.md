@@ -3,9 +3,9 @@
 It's anything but trivial, and occupied my whole week.
 
 ## [Binning matters.](http://scikit-learn.org/stable/auto_examples/cluster/plot_adjusted_for_chance_measures.html#sphx-glr-auto-examples-cluster-plot-adjusted-for-chance-measures-py)
-Note the ![V-measure](http://scikit-learn.org/stable/modules/generated/sklearn.metrics.v_measure_score.html) here is identical to normalized_MI.
+Note the [V-measure](http://scikit-learn.org/stable/modules/generated/sklearn.metrics.v_measure_score.html) here is identical to normalized_MI.
 
-### how to bin properly? k-mean clustering?
+**Cluster samples of your X, Y and label them**
 ![](./imgs/latex-image-1.png)
 
 ## how to do correction when calculating entropy?
@@ -18,7 +18,7 @@ Note that digamma(x) differs from log(x) only when x is smaller than 0.4.
 
 ![](./imgs/digamma_log.png)
 
-## scikit-learn ![Source Code](https://github.com/scikit-learn/scikit-learn/blob/a24c8b46/sklearn/metrics/cluster/supervised.py#L707)
+## scikit-learn [Source Code](https://github.com/scikit-learn/scikit-learn/blob/a24c8b46/sklearn/metrics/cluster/supervised.py#L707)
 
 scikit-learn has 3 methods to calculate mutual entropy.
 
@@ -35,9 +35,9 @@ For simple cases(e.g your X,Y are integers), AMI is the most feasible one, but i
 array([ 1.21,  2.  ,  4.  ])`
 So, if your X,Y are inhomogeneous values, do *binning first* before AMI().
 
-You can use ![k-mean](http://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html) in sklearn to bin your X or Y, but it's too costly.
+You can use [k-mean](http://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html) in sklearn to bin your X or Y, but it's too costly.
 
-Statistically there are a lot of ways to correct I(X;Y), including method in the ![blog](https://kaushikghose.wordpress.com/2013/10/24/computing-mutual-information-and-other-scary-things/), and the one mentioned above. However, they are not recommended because it would take too much effort to study them all. If you have the time, why not read the amazing blogs above and some fun statistical basics?
+Statistically there are a lot of ways to correct I(X;Y), including method in the [blog](https://kaushikghose.wordpress.com/2013/10/24/computing-mutual-information-and-other-scary-things/), and the one mentioned above. However, they are not recommended because it would take too much effort to study them all. If you have the time, why not read the amazing blogs above and some fun statistical basics?
 
 
 
